@@ -32,22 +32,27 @@ Personality rule:
 - if the OpenClaw source contains a strong tone/style/voice layer, OHL treats extraction into a separate personality preset as the OHL creator's recommended direction for this route
 - do not describe this as the default behavior of official Hermes automatic migration
 - if a personality preset is proposed, also prepare a duplication review for overlapping tone/style text in `SOUL.md` or `IDENTITY.md`
-- if a preset is created, ask whether it should be saved only, applied immediately, or rejected
+- if a preset is created, include the preset artifact in the migration pack and leave the actual save/apply/reject decision to the importer stage
 
 Skill review rule:
 - before finalizing skill export candidates, inspect likely dependency and readiness metadata such as `platforms`, `prerequisites`, `required_environment_variables`, `required_credential_files`, and `related_skills`
 - report those findings for review instead of treating every skill as portable by default
-- ask only whether skill transfer should happen in this pass or as a separate later pass
-- if the owner chooses later, skip skill transfer cleanly for the current pass and continue with the rest of the migration pack
-- when skill transfer is deferred, still record the relevant skill source metadata in the migration pack so a later pass can recognize the original source roots and winner paths without re-asking
+- exporter should ask only whether skill candidates/artifacts should be included in the migration pack for later importer review
+- if the owner declines, skip packing skill artifacts cleanly for the current pass
+- if the owner accepts, pack the reviewed skill candidates plus the relevant source metadata so the importer can decide later whether to actually import them
 
 Config recommendation rule:
-- ask only whether config recommendation work should happen in this migration pass or as a separate later pass
-- if the owner chooses later, skip this step cleanly for the current pass
-- if the owner chooses now, compare relevant OpenClaw and Hermes config options using official docs and propose similar or analogous settings where they clearly exist
-- do not apply config changes as part of recommendation generation
-- when config work is deferred, still record the relevant config source metadata in the migration pack so a later pass can recognize the original source file and section origin without re-asking
+- exporter should ask only whether config review material should be included in the migration pack for later importer review
+- if the owner declines, skip packing config review material cleanly for the current pass
+- if the owner accepts, compare relevant OpenClaw and Hermes config options using official docs and pack the review material without applying any target config changes
+- record the relevant config source metadata in the migration pack so the importer can recognize the original source file and section origin without re-asking
 - examples may include `command_allowlist`, `agent.personalities`, `skills.external_dirs`, `fallback_model`, and route-relevant messaging settings
+
+Messaging and env safety rule:
+- if the move may involve adding or reconnecting a bot to channels on the destination side, explain before token-related setup notes are packed that a duplicated shared `.env` or shared secret file should not be reused across bots casually
+- warn that the destination bot should use its own dedicated token/secret path and should not overwrite another bot's existing token by accident
+- if relevant, ask whether the owner wants a safe backup/preservation note for the existing bot token or token file before any destination setup notes are prepared
+- that backup/preservation option is for safe handling guidance only, not for carrying the token itself inside the migration pack
 
 Owner-facing disclosure rule:
 

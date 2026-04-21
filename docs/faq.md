@@ -106,8 +106,9 @@ That file contains short, copyable examples for:
 - starting an OHL route
 - exporter-first requests
 - importer-side requests
-- config now/later requests
-- skill import now/later requests
+- exporter-side config include/exclude requests
+- exporter-side skill include/exclude requests
+- importer-side config/skill apply-review requests
 - skill recommendation and overflow review requests
 - provenance disclosure requests
 - export-location and handoff-path requests
@@ -119,8 +120,35 @@ That file contains short, copyable examples for:
 - OHL 경로 시작 문구
 - exporter 먼저 돌리는 요청
 - importer 전용 요청
-- config를 지금 할지 나중에 할지 묻는 문구
-- skill import를 지금 할지 나중에 할지 묻는 문구
+- exporter에서 config review material을 pack에 넣을지 말지 묻는 문구
+- exporter에서 skill artifact를 pack에 넣을지 말지 묻는 문구
+- importer에서 config/skill 실제 적용 검토를 묻는 문구
 - skill 추천/overflow 검토 문구
 - provenance disclosure 문구
 - export 위치와 handoff path 안내 문구
+
+## How should choices be explained for beginners?
+
+OHL should not show bare numbers with no context.
+
+When a choice is shown, it should explain:
+- what happens next if that option is chosen
+- what is deferred or skipped
+- what exact files or config surfaces are affected when that matters
+- what the current move progress is
+
+It is fine to keep a moving-house metaphor for readability, but it should still name the real technical objects, such as:
+- `SOUL.md`
+- `MEMORY.md`
+- `agent.personalities`
+- `fallback_model`
+
+한국어로는:
+
+초보자나 편하게 쓰고 싶은 사람에게는 번호만 던지면 안 된다.
+각 선택지마다
+- 고르면 다음에 뭐가 일어나는지
+- 무엇이 보류되는지
+- 어떤 md나 속성값이 걸리는지
+- 지금 진행도가 어디쯤인지
+같이 설명해주는 쪽이 맞다.

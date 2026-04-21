@@ -13,6 +13,20 @@ Operational handoff preference for this route:
 - when the exporter writes a reviewed migration pack to disk, ask whether to place it in the target agent workspace or on the desktop
 - after export, report the final copy-pasteable path so the importer can find the pack quickly
 
+## Choice prompt style
+
+For this route, numbered owner choices should not appear as bare options with no guidance.
+
+Each choice prompt should say:
+- where the owner currently is in the move
+- what happens next for each option
+- what is deferred or skipped by each option
+- which exact files or config surfaces are affected when that matters
+
+Example tone:
+- use moving-house language to make the step easier to understand
+- but still name the real technical surfaces such as `SOUL.md`, `MEMORY.md`, `agent.personalities`, `fallback_model`, or the target Hermes workspace path
+
 Use this route when the source is OpenClaw and the target is Hermes.
 
 ## Reading order
@@ -53,8 +67,8 @@ Skill import work should also be opt-in and separable.
 
 Recommended behavior:
 
-- ask only whether skill import should happen now or as a separate later pass
-- treat "later" as a clean defer path without forcing skill import into the current pass
+- on the exporter side, ask only whether skill artifacts should be included in the migration pack
+- leave actual target-side skill import questions to the importer side
 - keep skill selection, overlap review, dependency review, and actual import as a distinct approval phase from the main content migration
 - when a known destination skill budget exists, calculate the remaining available slots after already-kept or already-active destination skills
 - use that remaining-slot count as the default recommendation batch size for skill search/review
@@ -67,8 +81,8 @@ Config recommendation work should be opt-in.
 
 Recommended behavior:
 
-- ask only whether config work should happen now or as a separate later pass
-- treat "later" as a clean defer path without forcing config work into the current pass
+- on the exporter side, ask only whether config review material should be included in the migration pack
+- leave actual target-side configuration review and application questions to the importer side
 - if the owner chooses now, compare OpenClaw and Hermes options using official docs
 - suggest clearly similar or analogous settings first
 - ask for approval before applying any config change
@@ -112,6 +126,11 @@ Route note:
 ## OHL creator recommendation
 
 For this route, OHL treats tone/style extraction into a personality preset as the OHL creator's recommended design direction.
+
+Exporter-side rule:
+- if a personality preset candidate is created, include it in the migration pack as a review artifact
+- do not force the owner to choose save/apply/reject during export
+- ask that question on the importer side instead
 
 Reasoning:
 

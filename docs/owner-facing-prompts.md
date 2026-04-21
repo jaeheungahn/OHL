@@ -10,6 +10,36 @@ They are short starting points a human owner can copy, adapt, or say in plain la
 
 ## 한국어 예시
 
+### 선택지 설명 형식
+
+```text
+OHL에서 번호 선택지를 보여줄 때는 번호만 던지지 말고,
+각 선택지를 고르면 다음에 뭐가 일어나는지,
+무엇이 이번 패스에서 보류되는지,
+그리고 지금 이사 진행도가 어디쯤인지 같이 설명해줘.
+
+이삿짐 비유는 써도 되지만,
+`SOUL.md`, `MEMORY.md`, `agent.personalities`, `fallback_model` 같은
+정확한 md 이름이나 속성값도 같이 적어줘.
+```
+
+### 선택지 설명 예시
+
+```text
+지금은 `OpenClaw -> Hermes` 이사에서
+`export pack 생성 완료 -> importer review 대기` 단계야.
+
+이번에 `config review material`을 pack에 넣을까?
+
+1. 넣기
+   - 다음: exporter가 `agent.personalities`, `fallback_model`, messaging 관련 review note를 pack에 넣어.
+   - 보류: Hermes 쪽 실제 적용은 아직 안 하고, importer에서 다시 물어봐.
+
+2. 넣지 않기
+   - 다음: 이번 pack에서는 config review note 없이 넘어가.
+   - 보류: config 검토는 importer나 나중 패스에서 다시 할 수 있어.
+```
+
 ### route 선택 첫 질문 형식
 
 ```text
@@ -38,6 +68,8 @@ OpenClaw 쪽에서 OHL exporter부터 실행해줘.
 Hermes 기준으로 review 가능한 export pack을 만들어줘.
 공식 Hermes baseline destination을 먼저 쓰고,
 안전하게 안 들어가면 자동으로 자르지 말고 압축안과 이유를 먼저 보여줘.
+메세징 연결이나 봇 이전이 걸리면 다른 봇과 `.env`나 공용 secret file을 같이 쓰지 말라고 먼저 설명해줘.
+기존 봇 토큰이 덮어써질 수 있으면 안전 보관 가이드를 같이 넣을지 먼저 물어봐.
 ```
 
 ### importer 쪽 요청
@@ -47,6 +79,8 @@ Hermes 쪽에서 OHL importer로 진행해줘.
 approved migration pack만 사용하고,
 원본 OpenClaw 파일을 다시 직접 읽지는 마.
 overflow, overlap, destination ambiguity가 있으면 멈추고 물어봐.
+메세징이나 모델/provider 인증이 필요하면 명령어 예시까지만 주고,
+새 credential은 내가 직접 발급받아 직접 넣게 해줘.
 ```
 
 ### 단계별 승인 강조
@@ -61,17 +95,25 @@ apply, import, trim, activation 같은 상태 변경은 묻고 해줘.
 
 ```text
 OHL로 OpenClaw -> Hermes migration 해줘.
-config 작업이 나오면 할지 말지를 길게 묻지 말고,
-지금 할지 나중에 할지만 물어봐.
-나중이면 깔끔하게 defer 해줘.
+exporter에서는 config review material을 pack에 넣을지 말지만 물어봐.
+실제 설정 검토/적용 여부는 importer에서 다시 물어봐.
 ```
 
 ### skill import 지금/나중
 
 ```text
 OHL로 OpenClaw -> Hermes migration 해줘.
-skill import가 나오면 지금 할지 나중에 할지만 물어봐.
-나중이면 이번 패스에서는 분리해서 넘겨줘.
+exporter에서는 skill artifact를 pack에 넣을지 말지만 물어봐.
+실제 import 여부는 importer에서 다시 물어봐.
+나중이면 pack 안에 provenance와 review metadata만 남겨줘.
+```
+
+### personality preset 처리
+
+```text
+OHL로 진행해줘.
+exporter에서 personality preset 후보가 보이면 pack에 넣어줘.
+saved/apply/reject 판단은 importer에서 물어봐.
 ```
 
 ### skill 추천 batch 스타일
@@ -136,6 +178,15 @@ When OHL starts interactively, ask the route first with all four public cases.
 Do not collapse them into an `other route` bucket at the first question.
 ```
 
+## Choice-explanation style
+
+```text
+When OHL shows numbered choices, explain what each option does next, what stays deferred, and where the owner currently is in the move.
+
+It is okay to use moving-house language for readability,
+but include exact technical names too, such as `SOUL.md`, `MEMORY.md`, `agent.personalities`, or `fallback_model`.
+```
+
 ## Simple route start
 
 ```text
@@ -177,16 +228,24 @@ but ask before applying, importing, trimming, or activating anything.
 
 ```text
 Use OHL for OpenClaw -> Hermes.
-When config work comes up, ask only whether to do it now or later.
-If later, defer it cleanly.
+On the exporter side, ask only whether config review material should be included in the migration pack.
+Ask whether to use or apply that config review only at the importer stage.
 ```
 
 ## Skill import now or later
 
 ```text
 Use OHL for OpenClaw -> Hermes.
-When skill import comes up, ask only whether to do it now or later.
-If later, defer it cleanly.
+On the exporter side, ask only whether skill artifacts should be included in the migration pack.
+Ask whether to actually import them only at the importer stage.
+```
+
+## Personality preset handling
+
+```text
+Use OHL.
+If a personality preset candidate is found during export, include it in the pack as a review artifact.
+Ask whether to save/apply/reject it only at the importer stage.
 ```
 
 ## Skill recommendation batch style

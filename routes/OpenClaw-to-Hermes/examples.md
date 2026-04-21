@@ -38,6 +38,10 @@ skills는 그냥 넣지 말고
 내가 원하면 그때만 OpenClaw와 Hermes 옵션을 공식 docs 기준으로 대조해서,
 유사하거나 대응되는 설정이 있으면 추천안으로 보여주고 승인받아.
 내가 원하지 않으면 config recommendation 단계는 스킵해.
+메세징 연결이나 모델/provider 인증이 필요하면,
+명령어 예시나 설정 예시까지만 보여주고 새 credential은 직접 발급받아 직접 넣으라고 안내해.
+다른 봇과 `.env`나 공용 secret file을 같이 쓰지 않도록 먼저 경고해.
+기존 봇 토큰이 덮어써질 수 있는 흐름이면, 기존 토큰/토큰파일을 안전하게 보관하는 안내를 넣을지 먼저 물어봐.
 Hermes를 쓴다면 plan mode는 비교 목록 설계에만 쓰고,
 실제 대조와 점검은 execution mode에서 하게 해.
 config 작업이 필요해도 이번 패스에서 할지,
@@ -97,7 +101,8 @@ If a strong tone/style layer exists, you may propose a separate personality pres
 but label that as the OHL creator's recommended route design, not as the official Hermes automatic migration default.
 
 If you create a personality preset candidate:
-- ask whether it should be saved only, applied immediately, or rejected
+- include it in the migration pack as a review artifact
+- leave the save/apply/reject decision to the importer stage
 - show overlap with SOUL.md or IDENTITY.md before removing anything
 - propose durable replacement content categories if overlap is removed
 
@@ -109,10 +114,14 @@ Report likely dependency or readiness signals from:
 - required_credential_files
 - related_skills
 
-Also include official-doc-based Hermes config suggestions when useful.
+Also include official-doc-based Hermes config review material when useful.
 
-But do that only if the owner asked for config recommendation work.
-If not requested, skip that step.
+But do that only if the owner asked for config review material to be packed.
+If not requested, skip that packing step.
+If messaging or model/provider setup would require fresh credentials,
+provide command or config examples only and leave fresh credential issuance plus final secret entry to the owner.
+If another bot's `.env` or shared secret file could be overwritten,
+warn clearly and ask whether to include safe preservation guidance for the existing token path first.
 When showing recommendations, use batches of at most 5 items.
 Ask the owner to reply with numbers only.
 Any item not mentioned stays on hold.
@@ -151,6 +160,8 @@ After validation, propose Hermes config recommendations if they improve fit or s
 
 Only do that if the owner opted into config recommendation work.
 If approved, compare OpenClaw and Hermes options using official docs and show analogous settings before applying anything.
+If messaging or model/provider auth is involved, do not finish that secret setup for the owner.
+Show command examples or config snippets if useful, but say clearly that fresh credentials must be issued and entered manually by the owner.
 Show at most 5 recommendations per batch.
 Only the mentioned numbers should move forward.
 Anything not mentioned stays on hold.

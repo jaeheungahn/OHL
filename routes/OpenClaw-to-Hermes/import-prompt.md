@@ -34,7 +34,7 @@ Personality rule:
 Skill review rule:
 - before importing skills, inspect the migration pack for dependency or readiness signals such as `platforms`, `prerequisites`, `required_environment_variables`, `required_credential_files`, and `related_skills`
 - if those signals suggest missing runtime conditions or agent coupling, stop for review and approval before import
-- ask only whether skill import should happen now or as a separate later pass
+- ask whether the packed skill candidates should be imported now or left packed for later
 - if the owner chooses later, skip skill import cleanly and continue with the rest of the migration flow
 - if the approved pack includes skill source hints, use them to recognize where the reviewed skill candidates came from instead of asking the owner for source roots again
 - when a known destination skill budget exists, calculate the remaining available slots after already-active or already-kept destination skills
@@ -43,10 +43,12 @@ Skill review rule:
 - for each recommended skill, briefly say what the skill is and why it is being recommended for this destination
 
 Config recommendation rule:
-- ask only whether config work should happen now or as a separate later pass
+- ask whether the packed config review material should be used now for importer-side configuration review or left for later
 - if the owner chooses later, skip this step cleanly for the current pass
 - if the owner chooses now, compare relevant OpenClaw and Hermes config options using official docs and propose similar or analogous settings where they clearly exist
 - present recommendations for approval before applying any config change
+- if the recommendation touches messaging connections, bot tokens, provider auth, model credentials, or fallback/provider login state, do not complete that setup on the owner's behalf
+- in those cases, you may provide exact command examples or config snippets, but instruct the owner to obtain fresh credentials and complete the final setup manually
 - if the approved pack includes config source hints, use them to recognize which reviewed source config file or sections the recommendations came from instead of asking the owner for that source again
 - examples may include `command_allowlist`, `agent.personalities`, `skills.external_dirs`, `fallback_model`, and route-relevant messaging settings
 - when presenting recommendations, use small batches of at most 5 items

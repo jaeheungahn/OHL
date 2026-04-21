@@ -21,6 +21,16 @@ The safer default is:
 - re-issue at destination
 - or re-enter at destination
 
+This also applies to:
+- messaging bot tokens and channel connection secrets
+- model/provider API keys, OAuth state, and fallback-provider auth
+- shared `.env` values or secret files that could accidentally be reused across multiple bots
+
+If a destination setup needs those values:
+- the tool may provide commands, path guidance, or config snippets
+- but the owner should obtain fresh credentials and complete the final secret entry manually
+- do not overwrite another bot's existing token or shared secret file casually
+
 ## Reporting
 
 Every export/import flow should make these visible:

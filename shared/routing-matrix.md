@@ -44,9 +44,9 @@ Across all four routes, OHL should eventually support:
 
 For config recommendation work across routes:
 
-- ask only whether config work should happen now or as a separate later pass
-- if later, skip cleanly for the current pass
-- if now, compare source and target config options using official docs
+- on the exporter side, ask only whether config review material should be included in the migration pack
+- on the importer side, ask later whether to use that packed config review material for actual target-side configuration review
+- if config review material is included, compare source and target config options using official docs
 - recommend clearly analogous settings first
 - ask for approval before applying any config change
 - present recommendations in batches of at most 5 items
@@ -59,8 +59,8 @@ For config recommendation work across routes:
 
 For skill import work across routes:
 
-- ask only whether skill import should happen now or as a separate later pass
-- if later, skip cleanly for the current pass
+- on the exporter side, ask only whether skill artifacts should be included in the migration pack
+- on the importer side, ask later whether those packed skill candidates should actually be imported
 - keep skill import approval separate from the main content migration approval
 
 ## Personality migration guardrail

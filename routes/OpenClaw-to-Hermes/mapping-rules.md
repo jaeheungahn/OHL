@@ -112,10 +112,10 @@ This should be an optional step, not a forced step.
 
 Recommended flow:
 
-1. ask only whether config work should happen now or as a separate later pass
-2. if the owner chooses later, skip it cleanly for the current pass
-3. if the owner chooses now, compare relevant OpenClaw and Hermes config surfaces using official docs
-4. identify clearly similar or analogous options first
+1. on the exporter side, ask only whether config review material should be included in the migration pack
+2. if the owner declines, skip that packing step cleanly for the current pass
+3. if the owner accepts, compare relevant OpenClaw and Hermes config surfaces using official docs and pack the review material
+4. on the importer side, identify clearly similar or analogous options first
 5. present recommendations and ask for approval before applying any change
 6. present recommendations in small batches, preferably 5 items at a time
 7. allow numeric approval replies where only the mentioned numbers are applied
