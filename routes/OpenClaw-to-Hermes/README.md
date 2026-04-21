@@ -13,7 +13,11 @@ Operational handoff preference for this route:
 - when the exporter writes a reviewed migration pack to disk, ask whether to place it in the target agent workspace or on the desktop
 - after export, report the final copy-pasteable path so the importer can find the pack quickly
 - after export, prefer a short visible completion message over a dense handoff block
-- default handoff contents should be: `done`, final pack path, OHL GitHub location, and a short instruction telling the owner to install OHL and ask for import on the target side
+- default handoff contents should be: `done`, final pack path, OHL GitHub location, and explicit next-step lines the owner can use on the target side
+- preferred target-side wording should be concrete, for example:
+  - `OHL 설치`
+  - `Pack 임포트해줘`
+  - `계획대로 실행해줘`
 
 ## Choice prompt style
 

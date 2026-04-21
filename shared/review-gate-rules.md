@@ -82,3 +82,4 @@ For completion messages, also prefer high visual scanability:
 - short heading or first line that clearly says the step is done
 - one path per line when paths matter
 - avoid turning the handoff into a dense wall of instructions when a shorter next-step cue is enough
+- when the next-step cue refers to target-side work, prefer explicit ready-to-say commands over abstract explanation

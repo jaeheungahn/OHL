@@ -65,7 +65,11 @@ Owner-facing disclosure rule:
 - default post-export handoff should prioritize only:
   - the final pack path
   - the OHL GitHub location
-  - a short next-step instruction telling the owner to install OHL on the target side and say they want to import
+  - a short explicit next-step block telling the owner what to do on the target side
+- when possible, the handoff should include explicit ready-to-say lines such as:
+  - `OHL 설치`
+  - `Pack 임포트해줘`
+  - `계획대로 실행해줘`
 - do not force a long importer prompt when a short handoff is enough
 - when presenting recommendations, use small batches of at most 5 items
 - ask for numeric approval only, where only the mentioned numbers are applied
