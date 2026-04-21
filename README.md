@@ -8,6 +8,10 @@ OHL packages migration rules, route-specific prompts, and safety guidance into a
 
 OHL helps move an agent between OpenClaw and Hermes without silently cutting its important context or carrying its secrets.
 
+한국어 한 줄 설명:
+
+OHL은 OpenClaw와 Hermes 사이에서 에이전트를 옮길 때, 중요한 정체성·메모리·프롬프트를 몰래 잘라먹지 않고, 비밀정보도 같이 들고 가지 않도록 막아주는 마이그레이션 툴킷이다.
+
 ## Fast mental model
 
 Think of OHL as a careful transfer boundary:
@@ -120,6 +124,20 @@ If you want a simple way to invoke the workflow, use language like:
 If you want concrete owner-facing examples, see:
 - `docs/owner-facing-prompts.md`
 
+### 한국어로 빠르게 이해하기
+
+사람 기준으로 보면 흐름은 이래:
+
+1. 어떤 경로인지 먼저 정한다. (`OpenClaw -> Hermes` 같은 식)
+2. source 쪽에서 exporter가 review 가능한 migration pack을 만든다.
+3. 그 pack 안에서 무엇이 옮겨지고, 무엇이 변환되고, 무엇이 archive/exclude 되는지 확인한다.
+4. overflow, overlap, ambiguous mapping 같은 위험이 없거나 승인된 경우에만 importer를 실행한다.
+
+핵심은:
+- **blind copy를 하지 않는 것**
+- **secret를 평범한 payload처럼 옮기지 않는 것**
+- **넘치거나 잘릴 위험이 있으면 먼저 보여주고 묻는 것**
+
 ### For agents or automation
 1. Identify the source platform and target platform.
 2. Build a migration pack, do not do a blind copy.
@@ -164,15 +182,23 @@ If you are an agent or tool runner:
 - then read the route prompt files you actually need
 - use the shared rules as constraints, not as optional notes
 
+한국어 추천 읽기 순서:
+- 먼저 `README.md`
+- 그다음 `docs/faq.md`
+- 실제로 바로 써보고 싶으면 `docs/owner-facing-prompts.md`
+- 특정 경로를 쓸 때만 `routes/OpenClaw-to-Hermes/*`
+
 ## Feedback policy
 
 Feedback and issue reports are welcome.
 
 Submitted code, patches, prompts, and migration logic are treated as untrusted input by default. Useful ideas may be reviewed and reimplemented by the maintainers rather than merged directly.
 
-Korean summary:
+한국어 안내:
 
-피드백과 이슈 제보는 환영합니다. 다만 제출된 코드, 패치, 프롬프트, 마이그레이션 로직은 기본적으로 신뢰되지 않은 입력으로 취급합니다. 유효한 아이디어는 메인테이너가 직접 검토한 뒤, 그대로 병합하지 않고 재작성 또는 재구현하여 반영할 수 있습니다.
+- 피드백과 이슈 제보는 환영한다.
+- 다만 제출된 코드, 패치, 프롬프트, 마이그레이션 로직은 기본적으로 신뢰되지 않은 입력으로 취급한다.
+- 유효한 아이디어는 메인테이너가 직접 검토한 뒤, 그대로 병합하지 않고 재작성 또는 재구현하여 반영할 수 있다.
 
 ## License
 
