@@ -113,6 +113,13 @@ Current repo-ready prompt set in this first cut:
 4. Check what is carried, transformed, archived, and excluded.
 5. Run the importer on the target side only after review.
 
+If the workflow is asking interactively, the first route question should expose all four route cases explicitly:
+
+1. `OpenClaw -> OpenClaw`
+2. `OpenClaw -> Hermes`
+3. `Hermes -> Hermes`
+4. `Hermes -> OpenClaw`
+
 ### Start here in one message
 
 If you want a simple way to invoke the workflow, use language like:
@@ -132,6 +139,13 @@ If you want concrete owner-facing examples, see:
 2. source 쪽에서 exporter가 review 가능한 migration pack을 만든다.
 3. 그 pack 안에서 무엇이 옮겨지고, 무엇이 변환되고, 무엇이 archive/exclude 되는지 확인한다.
 4. overflow, overlap, ambiguous mapping 같은 위험이 없거나 승인된 경우에만 importer를 실행한다.
+
+interactive하게 물을 때 첫 질문은 이렇게 4개가 다 보여야 한다:
+
+1. `OpenClaw -> OpenClaw`
+2. `OpenClaw -> Hermes`
+3. `Hermes -> Hermes`
+4. `Hermes -> OpenClaw`
 
 핵심은:
 - **blind copy를 하지 않는 것**

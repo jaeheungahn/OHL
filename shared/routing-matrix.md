@@ -7,6 +7,19 @@
 - Hermes -> Hermes
 - Hermes -> OpenClaw
 
+## First route-selection question
+
+When OHL starts interactively, the first route question should expose all four public routes explicitly.
+
+Recommended numbered form:
+
+1. `OpenClaw -> OpenClaw`
+2. `OpenClaw -> Hermes`
+3. `Hermes -> Hermes`
+4. `Hermes -> OpenClaw`
+
+Do not collapse routes `1, 2, 3, 4` into a vague `other route` bucket when the workflow is asking the owner to choose a route.
+
 ## Shared rules across all routes
 
 - use a migration pack between source and target

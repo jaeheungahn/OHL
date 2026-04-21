@@ -50,11 +50,18 @@ Build a migration pack first, review it second, import it last.
 ## Minimal workflow
 
 1. identify source and target
-2. choose the route
+2. choose the route explicitly from the four public route cases
 3. build a migration pack
 4. classify into carry / transform / archive / exclude
 5. review fit and overlap
 6. import only after review
+
+Recommended first interactive route question:
+
+1. `OpenClaw -> OpenClaw`
+2. `OpenClaw -> Hermes`
+3. `Hermes -> Hermes`
+4. `Hermes -> OpenClaw`
 
 ## Route docs
 

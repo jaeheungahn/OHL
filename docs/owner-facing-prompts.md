@@ -10,6 +10,19 @@ They are short starting points a human owner can copy, adapt, or say in plain la
 
 ## 한국어 예시
 
+### route 선택 첫 질문 형식
+
+```text
+OHL로 진행할 때 첫 질문은 route를 4개 경우의 수로 다 보여줘.
+
+1. OpenClaw -> OpenClaw
+2. OpenClaw -> Hermes
+3. Hermes -> Hermes
+4. Hermes -> OpenClaw
+
+기타 route로 뭉개지 말고 먼저 이 4개를 번호로 보여줘.
+```
+
 ### 간단한 시작 문구
 
 ```text
@@ -106,6 +119,21 @@ export first, review second, import last.
 의미 있는 단계마다 먼저 물어보고,
 config와 skill work는 지금 할지 나중에 할지만 물어봐.
 파일로 쓰면 workspace냐 desktop이냐 먼저 묻고 최종 경로도 알려줘.
+```
+
+## Simple route start
+
+## Route-selection first question
+
+```text
+When OHL starts interactively, ask the route first with all four public cases.
+
+1. OpenClaw -> OpenClaw
+2. OpenClaw -> Hermes
+3. Hermes -> Hermes
+4. Hermes -> OpenClaw
+
+Do not collapse them into an `other route` bucket at the first question.
 ```
 
 ## Simple route start

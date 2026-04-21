@@ -25,6 +25,28 @@ Use it in this order:
 - moved / transformed / archived / excluded를 검토한다.
 - 이상 없거나 승인된 뒤에만 importer를 실행한다.
 
+## How should route selection be asked?
+
+If OHL is asking interactively, the first route question should show all four public routes explicitly:
+
+1. `OpenClaw -> OpenClaw`
+2. `OpenClaw -> Hermes`
+3. `Hermes -> Hermes`
+4. `Hermes -> OpenClaw`
+
+It should not compress those into `1 + other route` when asking the owner to choose.
+
+한국어로는:
+
+interactive하게 route를 고르게 할 때는 첫 질문에서 4개 경우의 수를 다 보여주는 쪽이 맞다.
+
+1. `OpenClaw -> OpenClaw`
+2. `OpenClaw -> Hermes`
+3. `Hermes -> Hermes`
+4. `Hermes -> OpenClaw`
+
+즉, `1번 + 나머지는 기타 직접 입력`처럼 뭉개지 않게 해야 한다.
+
 ## How should an agent use OHL quickly?
 
 An agent should:
