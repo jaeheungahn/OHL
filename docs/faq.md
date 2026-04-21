@@ -133,9 +133,11 @@ OHL should not show bare numbers with no context.
 
 When a choice is shown, it should explain:
 - what happens next if that option is chosen
-- what is deferred or skipped
 - what exact files or config surfaces are affected when that matters
 - what the current move progress is
+
+It should not assume the owner already knows the internal state of OpenClaw or Hermes.
+Explain the choice as if the owner may be using one or both systems for the first time.
 
 It is fine to keep a moving-house metaphor for readability, but it should still name the real technical objects, such as:
 - `SOUL.md`
@@ -148,7 +150,9 @@ It is fine to keep a moving-house metaphor for readability, but it should still 
 초보자나 편하게 쓰고 싶은 사람에게는 번호만 던지면 안 된다.
 각 선택지마다
 - 고르면 다음에 뭐가 일어나는지
-- 무엇이 보류되는지
 - 어떤 md나 속성값이 걸리는지
 - 지금 진행도가 어디쯤인지
 같이 설명해주는 쪽이 맞다.
+
+그리고 OpenClaw나 Hermes를 아직 안 써본 사람도 이해할 수 있게,
+플랫폼 현재 상태를 이미 알고 있다는 전제로 말하지 않는 쪽이 맞다.

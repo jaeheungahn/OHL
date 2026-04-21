@@ -12,6 +12,8 @@ Operational handoff preference for this route:
 
 - when the exporter writes a reviewed migration pack to disk, ask whether to place it in the target agent workspace or on the desktop
 - after export, report the final copy-pasteable path so the importer can find the pack quickly
+- after export, prefer a short visible completion message over a dense handoff block
+- default handoff contents should be: `done`, final pack path, OHL GitHub location, and a short instruction telling the owner to install OHL and ask for import on the target side
 
 ## Choice prompt style
 
@@ -20,8 +22,12 @@ For this route, numbered owner choices should not appear as bare options with no
 Each choice prompt should say:
 - where the owner currently is in the move
 - what happens next for each option
-- what is deferred or skipped by each option
 - which exact files or config surfaces are affected when that matters
+
+Default assumption:
+- the owner may be new to OpenClaw, Hermes, or both
+- avoid explaining the option as if the current platform state is already familiar
+- use the real file or config names, then explain in plain language what they mean in this step
 
 Example tone:
 - use moving-house language to make the step easier to understand

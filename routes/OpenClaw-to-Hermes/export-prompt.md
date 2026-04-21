@@ -60,6 +60,13 @@ Owner-facing disclosure rule:
 - explain that those hints are for provenance and later resume convenience
 - explain that the importer should still rely on the approved pack rather than silently re-reading raw OpenClaw source files
 - if the exporter writes the pack to disk, say clearly where it was written and provide a copy-pasteable path for the importer
+- after export is complete, say clearly that the export is finished
+- keep the post-export handoff message visually simple and easy to scan
+- default post-export handoff should prioritize only:
+  - the final pack path
+  - the OHL GitHub location
+  - a short next-step instruction telling the owner to install OHL on the target side and say they want to import
+- do not force a long importer prompt when a short handoff is enough
 - when presenting recommendations, use small batches of at most 5 items
 - ask for numeric approval only, where only the mentioned numbers are applied
 - treat unmentioned items as held by default

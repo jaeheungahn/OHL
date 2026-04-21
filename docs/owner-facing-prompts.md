@@ -15,12 +15,14 @@ They are short starting points a human owner can copy, adapt, or say in plain la
 ```text
 OHL에서 번호 선택지를 보여줄 때는 번호만 던지지 말고,
 각 선택지를 고르면 다음에 뭐가 일어나는지,
-무엇이 이번 패스에서 보류되는지,
 그리고 지금 이사 진행도가 어디쯤인지 같이 설명해줘.
 
 이삿짐 비유는 써도 되지만,
 `SOUL.md`, `MEMORY.md`, `agent.personalities`, `fallback_model` 같은
 정확한 md 이름이나 속성값도 같이 적어줘.
+
+그리고 OpenClaw나 Hermes를 처음 쓰는 사람도 이해할 수 있게,
+플랫폼 내부 상태를 이미 알고 있다는 전제로 설명하지 마.
 ```
 
 ### 선택지 설명 예시
@@ -33,11 +35,9 @@ OHL에서 번호 선택지를 보여줄 때는 번호만 던지지 말고,
 
 1. 넣기
    - 다음: exporter가 `agent.personalities`, `fallback_model`, messaging 관련 review note를 pack에 넣어.
-   - 보류: Hermes 쪽 실제 적용은 아직 안 하고, importer에서 다시 물어봐.
 
 2. 넣지 않기
    - 다음: 이번 pack에서는 config review note 없이 넘어가.
-   - 보류: config 검토는 importer나 나중 패스에서 다시 할 수 있어.
 ```
 
 ### route 선택 첫 질문 형식
@@ -151,6 +151,33 @@ OHL로 진행해줘.
 export pack을 파일로 쓸 때는 대상 에이전트 workspace에 둘지,
 바탕화면에 둘지 먼저 물어봐.
 끝나면 importer가 찾기 쉽게 복붙 가능한 최종 경로를 알려줘.
+```
+
+### export 완료 후 안내 형식
+
+```text
+export가 끝나면 길고 복잡한 importer 프롬프트를 바로 던지지 말고,
+먼저 끝났다고 분명히 알려줘.
+
+그리고 이 3가지만 짧고 잘 보이게 알려줘:
+- pack 경로
+- OHL GitHub 위치
+- 다음에 대상 쪽에서 "OHL 깔고 import 하고 싶다"고 말하면 된다는 안내
+```
+
+### export 완료 후 짧은 안내 예시
+
+```text
+이사짐 포장 끝났어.
+
+pack 경로:
+`/path/to/pack`
+
+OHL GitHub:
+`https://github.com/jaeheungahn/OHL`
+
+다음엔 대상 쪽에서 OHL 설치하고,
+"OHL 깔고 import 하고 싶다"고 말해주면 돼.
 ```
 
 ### 짧은 통합 요청
@@ -283,6 +310,18 @@ not silent raw-source re-read permission.
 Use OHL.
 Before writing the reviewed export pack, ask whether to place it in the target agent workspace or on the desktop.
 After export, tell me the final copy-pasteable path so the importer can find it quickly.
+```
+
+## Post-export handoff style
+
+```text
+After export, do not immediately dump a long importer prompt if a shorter handoff is enough.
+
+First say clearly that the export is done.
+Then show only:
+- the final pack path
+- the OHL GitHub location
+- a short next-step line telling the owner to install OHL on the target side and say they want to import
 ```
 
 ## Short all-in-one request

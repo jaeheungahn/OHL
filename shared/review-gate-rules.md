@@ -55,9 +55,18 @@ User-facing review questions should be:
 
 When a numbered choice is shown, it should also explain:
 - what happens next if the owner chooses that option
-- what gets deferred or skipped
 - which exact files, payloads, or config surfaces are affected when relevant (for example `SOUL.md`, `MEMORY.md`, `agent.personalities`, `fallback_model`)
 - where the owner currently is in the move, for example `route chosen -> pack built -> import review pending`
+
+For most beginner-facing choice prompts, the useful minimum is:
+- current move progress
+- what happens next
+- which real files or config surfaces are involved
+
+Only add defer/skip narration when leaving it out would create real confusion.
+
+Also assume the owner may be new to both platforms.
+Do not explain choices as if the owner already knows the current state of OpenClaw or Hermes internals.
 
 ## Tone rule
 
@@ -68,3 +77,8 @@ It is good to keep the moving-house metaphor for readability, but the metaphor s
 Good style:
 - friendly move-language for the overview
 - exact md filenames, config keys, and destination paths for the real decision surface
+
+For completion messages, also prefer high visual scanability:
+- short heading or first line that clearly says the step is done
+- one path per line when paths matter
+- avoid turning the handoff into a dense wall of instructions when a shorter next-step cue is enough
