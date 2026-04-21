@@ -109,6 +109,17 @@ Current repo-ready prompt set in this first cut:
 4. Check what is carried, transformed, archived, and excluded.
 5. Run the importer on the target side only after review.
 
+### Start here in one message
+
+If you want a simple way to invoke the workflow, use language like:
+
+- `Use OHL for OpenClaw -> Hermes migration. Build a reviewable export pack first.`
+- `Use OHL. Export first, review second, import last.`
+- `Use OHL for OpenClaw -> Hermes. Ask at each meaningful step before applying changes.`
+
+If you want concrete owner-facing examples, see:
+- `docs/owner-facing-prompts.md`
+
 ### For agents or automation
 1. Identify the source platform and target platform.
 2. Build a migration pack, do not do a blind copy.
@@ -145,6 +156,7 @@ It assumes:
 If you are here for a fast read:
 - read `README.md` first
 - read `docs/faq.md` second
+- read `docs/owner-facing-prompts.md` if you want ready-to-use prompt examples
 - read `routes/OpenClaw-to-Hermes/*` only when you are using that route
 
 If you are an agent or tool runner:
@@ -178,9 +190,9 @@ Practical meaning for this repo:
 
 If this repo later grows a substantial executable code layer, the code license may be split from the docs/prompt license in a later revision. This first public GitHub packaging is document-and-prompt centered.
 
-## Suggested first upload set
+## Included in this public release
 
-For the first GitHub push, the minimum sensible set is:
+Current public release includes:
 - `README.md`
 - `LICENSE`
 - `SKILL.md`
@@ -191,6 +203,7 @@ For the first GitHub push, the minimum sensible set is:
 - `docs/design-overview.md`
 - `docs/safety-model.md`
 - `docs/faq.md`
+- `docs/owner-facing-prompts.md`
 
 ## Attribution preference
 

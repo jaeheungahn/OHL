@@ -60,3 +60,17 @@ The public route model is:
 - Hermes -> OpenClaw
 
 The current first package focuses on the OpenClaw -> Hermes route first.
+
+## Where can I see ready-to-use owner prompt examples?
+
+See `docs/owner-facing-prompts.md`.
+
+That file contains short, copyable examples for:
+- starting an OHL route
+- exporter-first requests
+- importer-side requests
+- config now/later requests
+- skill import now/later requests
+- skill recommendation and overflow review requests
+- provenance disclosure requests
+- export-location and handoff-path requests
