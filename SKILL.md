@@ -49,19 +49,33 @@ Build a migration pack first, review it second, import it last.
 
 ## Minimal workflow
 
-1. identify source and target
-2. choose the route explicitly from the four public route cases
-3. build a migration pack
-4. classify into carry / transform / archive / exclude
-5. review fit and overlap
-6. import only after review
+Exporter should stay short and low-friction.
+It should normally finish in two interactive steps before pack creation.
 
-Recommended first interactive route question:
+1. detect the current source platform automatically
+2. ask what to include:
+   - `1. md만`
+   - `2. md + skills`
+   - `3. md + skills + config`
+   - `4. 추가 요청사항`
+3. ask only for the destination platform or destination path as needed
+4. build a migration pack
+5. leave most review questions, fit concerns, and import decisions inside the pack as importer-facing notes
 
-1. `OpenClaw -> OpenClaw`
-2. `OpenClaw -> Hermes`
-3. `Hermes -> Hermes`
-4. `Hermes -> OpenClaw`
+Exporter rule:
+- do not keep the owner in a long review interview on the source side
+- keep exporter questions minimal
+- pack later questions as importer guidance when possible
+- user convenience wins over exporter-side over-questioning
+
+Importer rule:
+- analyze the approved pack before asking import questions
+- explain OHL's recommended destination plan with source labels: official automatic destination, OHL-recommended path, OHL creator-recommended path, archive fallback, or hold / review item
+- explain overflow, truncation, duplicate, and fit risks before applying anything
+- confirm and discuss the md injection plan before writing destination files
+- after md handling, run skill migration as a separate pass with body-level duplicate/overlap checking
+- after skills, offer config interpretation as a separate pass
+- finish with a clear summary of injected, archived, imported, skipped, and held items
 
 ## Route docs
 

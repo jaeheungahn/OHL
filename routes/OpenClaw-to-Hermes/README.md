@@ -77,7 +77,7 @@ Skill import work should also be opt-in and separable.
 
 Recommended behavior:
 
-- on the exporter side, ask only whether skill artifacts should be included in the migration pack
+- on the exporter side, include skill artifacts only when the owner chose `md + skills`, `md + skills + config`, or explicitly requested skill notes
 - leave actual target-side skill import questions to the importer side
 - keep skill selection, overlap review, dependency review, and actual import as a distinct approval phase from the main content migration
 - when a known destination skill budget exists, calculate the remaining available slots after already-kept or already-active destination skills
@@ -91,9 +91,9 @@ Config recommendation work should be opt-in.
 
 Recommended behavior:
 
-- on the exporter side, ask only whether config review material should be included in the migration pack
+- on the exporter side, include config review material only when the owner chose `md + skills + config` or explicitly requested config notes
 - leave actual target-side configuration review and application questions to the importer side
-- if the owner chooses now, compare OpenClaw and Hermes options using official docs
+- if config material is included, compare OpenClaw and Hermes options using official docs
 - suggest clearly similar or analogous settings first
 - ask for approval before applying any config change
 
@@ -153,4 +153,4 @@ This is intentionally documented as the OHL creator's recommendation, not as a c
 
 ## Representative request
 
-> "Use the official Hermes automatic migration destinations first. Archive items with no direct destination under the official migration archive path. If an item does not fit safely, do not auto-truncate it. Show the compression proposal and the reason first, then ask for confirmation."
+> "Use the approved OpenClaw -> Hermes pack only. First analyze the files and explain what OHL recommends for each important payload. Label each recommendation source: official automatic migration destination, OHL-recommended path instead of archive, OHL creator-recommended path, archive fallback, or hold / review item. Explain overflow and fit risk before applying anything. Confirm the md injection plan with the owner, then handle skills with body-level duplicate checking, then interpret config if the owner wants it."

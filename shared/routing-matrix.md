@@ -7,18 +7,20 @@
 - Hermes -> Hermes
 - Hermes -> OpenClaw
 
-## First route-selection question
+## Exporter interaction entry point
 
-When OHL starts interactively, the first route question should expose all four public routes explicitly.
+When OHL starts from a known source workspace, the exporter should detect the current source platform automatically instead of making the owner choose a full route first.
 
-Recommended numbered form:
+Recommended first numbered form:
 
-1. `OpenClaw -> OpenClaw`
-2. `OpenClaw -> Hermes`
-3. `Hermes -> Hermes`
-4. `Hermes -> OpenClaw`
+1. `md only`
+2. `md + skills`
+3. `md + skills + config`
+4. `additional request notes`
 
-Do not collapse routes `1, 2, 3, 4` into a vague `other route` bucket when the workflow is asking the owner to choose a route.
+Then ask only for the destination platform or destination path.
+
+The four public routes remain the underlying model, but they are usually resolved from detected source + requested destination rather than exposed as the first owner-facing question. Use the explicit four-route chooser only when the source platform is unknown or ambiguous.
 
 ## Shared rules across all routes
 
@@ -44,7 +46,7 @@ Across all four routes, OHL should eventually support:
 
 For config recommendation work across routes:
 
-- on the exporter side, ask only whether config review material should be included in the migration pack
+- on the exporter side, include config review material only when the owner chose `md + skills + config` or explicitly requested config notes
 - on the importer side, ask later whether to use that packed config review material for actual target-side configuration review
 - if config review material is included, compare source and target config options using official docs
 - recommend clearly analogous settings first
@@ -59,7 +61,7 @@ For config recommendation work across routes:
 
 For skill import work across routes:
 
-- on the exporter side, ask only whether skill artifacts should be included in the migration pack
+- on the exporter side, include skill artifacts only when the owner chose `md + skills`, `md + skills + config`, or explicitly requested skill notes
 - on the importer side, ask later whether those packed skill candidates should actually be imported
 - keep skill import approval separate from the main content migration approval
 

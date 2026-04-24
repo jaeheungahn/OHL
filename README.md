@@ -80,6 +80,8 @@ This repo is being prepared for:
 - cookies
 - session files
 - raw auth state
+- `PENDING.md` unless the owner explicitly asks to carry it
+- `SESSION-STATE.md` and `working-buffer.md` unless the owner explicitly asks, because they are operational working artifacts rather than durable migration baselines
 - unclear local noise that does not belong in the target
 
 ## Core guarantees
@@ -107,13 +109,14 @@ Current repo-ready prompt set in this first cut:
 ## Quick start
 
 ### For humans
-1. Pick the route you actually need.
-2. Run the exporter on the source side.
-3. Review the generated migration pack.
-4. Check what is carried, transformed, archived, and excluded.
-5. Run the importer on the target side only after review.
+1. Run the exporter on the source side.
+2. Choose what to include: md only, md + skills, md + skills + config, or extra request notes.
+3. Choose the destination platform or path.
+4. Review the generated migration pack.
+5. Check what is carried, transformed, archived, and excluded.
+6. Run the importer on the target side only after review.
 
-If the workflow is asking interactively, the first route question should expose all four route cases explicitly:
+If the source workspace is known, the exporter should detect the source platform automatically and keep the first owner-facing interaction to inclusion scope. Use the explicit four-route chooser only when source detection is unknown or ambiguous:
 
 1. `OpenClaw -> OpenClaw`
 2. `OpenClaw -> Hermes`
@@ -126,7 +129,7 @@ If you want a simple way to invoke the workflow, use language like:
 
 - `Use OHL for OpenClaw -> Hermes migration. Build a reviewable export pack first.`
 - `Use OHL. Export first, review second, import last.`
-- `Use OHL for OpenClaw -> Hermes. Ask at each meaningful step before applying changes.`
+- `Use OHL for OpenClaw -> Hermes. Keep exporter interaction to 2 short steps, then leave detailed review to pack notes and the importer stage.`
 
 If you want concrete owner-facing examples, see:
 - `docs/owner-facing-prompts.md`
@@ -180,6 +183,7 @@ OHL is intentionally conservative.
 It assumes:
 - secrets are excluded unless a narrow exception is explicitly approved
 - destination fit must be checked before import
+- importer should analyze the pack first, explain OHL recommendation sources, then confirm md injection before moving to skills and config
 - credentials should be re-issued or re-entered at the destination
 - unresolved ambiguity is a stop condition, not a soft warning
 
@@ -224,9 +228,12 @@ To keep GitHub license detection as clean as possible, `LICENSE` keeps the canon
 
 Practical meaning for this repo:
 - personal use allowed
+- private study, reading, and non-public experimentation are allowed
 - attribution required
 - commercial use prohibited
 - redistribution of modified derivatives is not allowed under the default license
+- GitHub forking or copying does not grant permission to publish modified versions
+- if someone wants to publish a modified version, they need separate written permission from the licensor
 
 If this repo later grows a substantial executable code layer, the code license may be split from the docs/prompt license in a later revision. This first public GitHub packaging is document-and-prompt centered.
 

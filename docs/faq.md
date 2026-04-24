@@ -13,44 +13,55 @@ OHL은 OpenClaw와 Hermes 사이에서 에이전트의 정체성, 프롬프트, 
 ## How should a human use OHL quickly?
 
 Use it in this order:
-- choose the route
-- run the exporter
+- run the exporter from the source workspace
+- choose what to include
+- choose the destination platform or path
 - review the migration pack
-- confirm what is moved versus transformed versus excluded
 - run the importer only after review
 
 한국어 빠른 사용법:
-- 경로를 먼저 정한다.
-- exporter로 migration pack을 만든다.
-- moved / transformed / archived / excluded를 검토한다.
+- source workspace에서 exporter를 실행한다.
+- md / skills / config 중 무엇을 담을지 고른다.
+- destination platform 또는 path를 정한다.
+- migration pack을 검토한다.
 - 이상 없거나 승인된 뒤에만 importer를 실행한다.
 
-## How should route selection be asked?
+## How should exporter interaction be asked?
 
-If OHL is asking interactively, the first route question should show all four public routes explicitly:
+If OHL starts from a known source workspace, the exporter should detect the source platform automatically and ask what to include first:
+
+1. `md only`
+2. `md + skills`
+3. `md + skills + config`
+4. `additional request notes`
+
+Then ask only for the destination platform or destination path.
+
+The four public routes still exist internally:
 
 1. `OpenClaw -> OpenClaw`
 2. `OpenClaw -> Hermes`
 3. `Hermes -> Hermes`
 4. `Hermes -> OpenClaw`
 
-It should not compress those into `1 + other route` when asking the owner to choose.
+But the explicit route chooser should be used mainly when the source platform is unknown or ambiguous.
 
 한국어로는:
 
-interactive하게 route를 고르게 할 때는 첫 질문에서 4개 경우의 수를 다 보여주는 쪽이 맞다.
+source workspace가 이미 분명하면, exporter는 source를 스스로 인식하고 첫 질문에서는 무엇을 담을지만 물어보는 쪽이 맞다.
 
-1. `OpenClaw -> OpenClaw`
-2. `OpenClaw -> Hermes`
-3. `Hermes -> Hermes`
-4. `Hermes -> OpenClaw`
+1. `md만`
+2. `md + skills`
+3. `md + skills + config`
+4. `추가 요청사항`
 
-즉, `1번 + 나머지는 기타 직접 입력`처럼 뭉개지 않게 해야 한다.
+그 다음 destination platform/path만 짧게 묻는다. 4-route 선택지는 내부 모델로 유지하되, source가 애매할 때만 첫 질문으로 꺼낸다.
 
 ## How should an agent use OHL quickly?
 
 An agent should:
-- identify source and target first
+- detect the source platform first
+- ask the owner for inclusion scope, then destination
 - build a migration pack instead of copying raw files
 - classify items into carry / transform / archive / exclude
 - stop for review if truncation, overlap, ambiguity, or destination-fit risk appears

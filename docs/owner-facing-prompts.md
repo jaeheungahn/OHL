@@ -40,17 +40,20 @@ OHL에서 번호 선택지를 보여줄 때는 번호만 던지지 말고,
    - 다음: 이번 pack에서는 config review note 없이 넘어가.
 ```
 
-### route 선택 첫 질문 형식
+### exporter 첫 질문 형식
 
 ```text
-OHL로 진행할 때 첫 질문은 route를 4개 경우의 수로 다 보여줘.
+OHL exporter는 source 플랫폼을 스스로 인식하고,
+첫 질문에서는 route 4개를 먼저 늘어놓지 말고
+무엇을 담을지만 먼저 4개 보기로 보여줘.
 
-1. OpenClaw -> OpenClaw
-2. OpenClaw -> Hermes
-3. Hermes -> Hermes
-4. Hermes -> OpenClaw
+1. md만
+2. md + skills
+3. md + skills + config
+4. 추가 요청사항
 
-기타 route로 뭉개지 말고 먼저 이 4개를 번호로 보여줘.
+여기서 받은 범위와 요청사항을 바탕으로,
+다음 질문에서는 destination platform/path만 짧게 물어봐.
 ```
 
 ### 간단한 시작 문구
@@ -65,11 +68,21 @@ blind copy 하지 말고, review 가능한 export pack부터 만들어줘.
 
 ```text
 OpenClaw 쪽에서 OHL exporter부터 실행해줘.
-Hermes 기준으로 review 가능한 export pack을 만들어줘.
-공식 Hermes baseline destination을 먼저 쓰고,
-안전하게 안 들어가면 자동으로 자르지 말고 압축안과 이유를 먼저 보여줘.
-메세징 연결이나 봇 이전이 걸리면 다른 봇과 `.env`나 공용 secret file을 같이 쓰지 말라고 먼저 설명해줘.
-기존 봇 토큰이 덮어써질 수 있으면 안전 보관 가이드를 같이 넣을지 먼저 물어봐.
+유저 질문은 2단계로만 끝내줘.
+
+Step 1:
+1. md만
+2. md + skills
+3. md + skills + config
+4. 추가 요청사항
+
+Step 2:
+source는 네가 스스로 인식하고,
+destination platform/path만 짧게 물어봐.
+
+나머지 review 질문, 주의점, importer 판단 포인트는
+팩 안의 메모나 importer 참고 프롬프트로 남겨줘.
+유저를 source 쪽에서 오래 붙잡지 마.
 ```
 
 ### importer 쪽 요청
@@ -78,17 +91,32 @@ Hermes 기준으로 review 가능한 export pack을 만들어줘.
 Hermes 쪽에서 OHL importer로 진행해줘.
 approved migration pack만 사용하고,
 원본 OpenClaw 파일을 다시 직접 읽지는 마.
-overflow, overlap, destination ambiguity가 있으면 멈추고 물어봐.
+
+먼저 파일을 분석하고 설명해줘.
+그 다음 OHL 기준 추천을 출처별로 나눠서 보여줘:
+- 공식 자동 migration destination
+- archive 대신 OHL이 권장하는 실제 주입 경로
+- OHL 제작자 추천 경로
+- archive fallback
+- 보류/review 항목
+
+오버플로우, 중복, destination ambiguity가 있으면 무엇이 왜 문제인지 먼저 설명해줘.
+그 뒤 md 주입안은 컨펌/상의 후 진행해줘.
+md가 끝난 다음 skills를 가져올지 물어보고,
+스킬 본문까지 중복 검사해서 완전 중복/의미상 중복 개수를 보고해줘.
+그 다음 config도 가져오고 싶은지 묻고, 가져온다면 네가 해석해서 추천해줘.
 메세징이나 모델/provider 인증이 필요하면 명령어 예시까지만 주고,
 새 credential은 내가 직접 발급받아 직접 넣게 해줘.
 ```
 
-### 단계별 승인 강조
+### importer 승인 스타일
 
 ```text
-OHL로 진행하되, 의미 있는 단계마다 먼저 물어봐.
-내부 비교나 준비는 먼저 해도 되지만,
-apply, import, trim, activation 같은 상태 변경은 묻고 해줘.
+OHL importer는 파일마다 길게 yes/no로 묻지 말고,
+먼저 pack을 분석한 뒤 OHL 추천 경로와 그 출처를 설명해줘.
+
+흐름은 md 분석/주입 컨펌 -> skill 중복검사/import 여부 -> config 해석/적용 여부 -> 완료 요약 순서로 진행해줘.
+apply, import, trim, activation 같은 상태 변경 직전에는 짧게 승인 받아줘.
 ```
 
 ### config 지금/나중
@@ -194,17 +222,20 @@ config와 skill work는 지금 할지 나중에 할지만 물어봐.
 
 ## Simple route start
 
-## Route-selection first question
+## Exporter first question
 
 ```text
-When OHL starts interactively, ask the route first with all four public cases.
+When OHL exporter starts interactively, detect the current source platform automatically.
+Do not ask the owner to choose among all four route cases first.
 
-1. OpenClaw -> OpenClaw
-2. OpenClaw -> Hermes
-3. Hermes -> Hermes
-4. Hermes -> OpenClaw
+Ask this first instead:
+1. md only
+2. md + skills
+3. md + skills + config
+4. additional request notes
 
-Do not collapse them into an `other route` bucket at the first question.
+Then ask only for the destination platform or destination path.
+Leave deeper review questions inside the pack for the importer stage whenever possible.
 ```
 
 ## Choice-explanation style
@@ -222,7 +253,7 @@ but include exact technical names too, such as `SOUL.md`, `MEMORY.md`, `agent.pe
 Use OHL for OpenClaw -> Hermes migration.
 Build a reviewable export pack first.
 Do not do a blind copy.
-Ask at each meaningful step before applying changes.
+Keep exporter interaction short: ask what to include, then ask where to send it.
 ```
 
 ## Export-first request
@@ -244,29 +275,33 @@ Do not re-read raw OpenClaw source files directly.
 If there is overflow, overlap, or destination ambiguity, stop and ask.
 ```
 
-## Step-by-step approval style
+## Exporter interaction style
 
 ```text
 Use OHL.
-Ask at each meaningful step before changing state.
-You can do internal comparison and preparation first,
-but ask before applying, importing, trimming, or activating anything.
+On the exporter side, keep the owner interaction short.
+Prefer a 2-step flow:
+- what to include
+- where to send it
+
+Do internal comparison and preparation quietly.
+Move most detailed review questions into pack notes or importer-facing prompts instead of expanding the exporter interview.
 ```
 
 ## Config now or later
 
 ```text
 Use OHL for OpenClaw -> Hermes.
-On the exporter side, ask only whether config review material should be included in the migration pack.
-Ask whether to use or apply that config review only at the importer stage.
+On the exporter side, include config review material only if I choose `md + skills + config` or explicitly ask for config notes.
+At the importer stage, first show which config surfaces are involved, then ask whether to use or apply that config review now or later.
 ```
 
 ## Skill import now or later
 
 ```text
 Use OHL for OpenClaw -> Hermes.
-On the exporter side, ask only whether skill artifacts should be included in the migration pack.
-Ask whether to actually import them only at the importer stage.
+On the exporter side, include skill artifacts only if I choose `md + skills`, `md + skills + config`, or explicitly ask for skill notes.
+At the importer stage, first show the skill review summary, then ask whether to actually import them now or leave them packed for later.
 ```
 
 ## Personality preset handling
@@ -274,7 +309,7 @@ Ask whether to actually import them only at the importer stage.
 ```text
 Use OHL.
 If a personality preset candidate is found during export, include it in the pack as a review artifact.
-Ask whether to save/apply/reject it only at the importer stage.
+At the importer stage, first classify the preset in the destination mapping, then ask whether to save/apply/reject it.
 ```
 
 ## Skill recommendation batch style
@@ -334,7 +369,7 @@ Then show only:
 ```text
 Use OHL for OpenClaw -> Hermes.
 Export first, review second, import last.
-Ask at each meaningful step.
-Config and skill work should ask only now or later.
+On the exporter side, ask only two short things: what to include, then where to send it.
+Move detailed review questions into pack notes or importer-facing prompts.
 If you write the pack to disk, ask workspace or desktop, then tell me the final path.
 ```

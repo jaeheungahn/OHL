@@ -9,6 +9,9 @@
 - auth blobs
 - raw credential stores
 - secret env values
+- `PENDING.md` unless explicitly approved
+- `SESSION-STATE.md`
+- `working-buffer.md`
 
 ## Default policy
 

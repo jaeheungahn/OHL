@@ -27,8 +27,8 @@ Special cases:
 - If a personality preset candidate is present during import, ask whether it should be applied immediately, kept as a saved preset only, or rejected.
 - If removing duplicated tone/style text from durable files would change the long-term identity surface, ask before editing.
 - If skill metadata suggests missing env vars, commands, credential files, or related skill coupling, ask before import.
-- If skill handling is optional, exporter should ask only whether skill artifacts should be included in the pack, and importer should ask later whether those packed skill candidates should actually be imported.
-- If config handling is optional, exporter should ask only whether config review material should be included in the pack, and importer should ask later whether to use that packed review material for actual target-side configuration review.
+- If skill handling is optional, exporter should include skill artifacts only when the owner chose `md + skills`, `md + skills + config`, or explicitly requested skill notes; importer should ask later whether those packed skill candidates should actually be imported.
+- If config handling is optional, exporter should include config review material only when the owner chose `md + skills + config` or explicitly requested config notes; importer should ask later whether to use that packed review material for actual target-side configuration review.
 - If config recommendations are generated, ask before applying any recommended config change.
 - If messaging or model/provider setup would require fresh secrets, present manual setup guidance and commands only. Do not complete secret entry on the owner's behalf.
 - If destination bot setup could collide with another bot's `.env` or shared token file, warn explicitly and ask whether the owner wants safe preservation guidance for the existing token before any setup notes are finalized.

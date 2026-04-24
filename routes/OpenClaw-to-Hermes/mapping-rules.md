@@ -26,6 +26,20 @@ They are archived for manual review under the Hermes migration output directory.
 - `HEARTBEAT.md`
 - `BOOTSTRAP.md`
 
+### OHL temporary exclusion rule
+
+For the current OHL baseline, do not treat the following as default migration payloads:
+
+- `PENDING.md`
+- `SESSION-STATE.md`
+- `working-buffer.md`
+
+Reasoning:
+
+- `PENDING.md` is owner-authored review/backlog material and should not be silently packed as durable migration payload.
+- `SESSION-STATE.md` and `working-buffer.md` are session- or skill-driven operational artifacts, not durable identity/memory baselines.
+- If the owner explicitly wants any of them carried, OHL should ask and classify them case-by-case instead of assuming carry by default.
+
 Official archive location pattern:
 
 - `~/.hermes/migration/openclaw/<timestamp>/archive/...`
@@ -112,9 +126,9 @@ This should be an optional step, not a forced step.
 
 Recommended flow:
 
-1. on the exporter side, ask only whether config review material should be included in the migration pack
-2. if the owner declines, skip that packing step cleanly for the current pass
-3. if the owner accepts, compare relevant OpenClaw and Hermes config surfaces using official docs and pack the review material
+1. on the exporter side, include config review material only when the owner chose `md + skills + config` or explicitly requested config notes
+2. if config material is not requested, skip that packing step cleanly for the current pass
+3. if config material is requested, compare relevant OpenClaw and Hermes config surfaces using official docs and pack the review material
 4. on the importer side, identify clearly similar or analogous options first
 5. present recommendations and ask for approval before applying any change
 6. present recommendations in small batches, preferably 5 items at a time
@@ -161,15 +175,16 @@ Target importer consumes the approved migration pack.
 
 ## Approval gates
 
-- export asks whether active skills should be included
-- import checks skill overlap against Hermes built-ins and destination-owned paths
+- exporter includes skills only when the owner chose a skills-including scope or explicitly requested skill notes
+- importer explains destination fit before asking import questions
+- importer checks skill overlap against Hermes built-ins and destination-owned paths
 - overflow or likely truncation stops for explicit review
 
 ## Example request shape
 
 Example of the intended workflow style:
 
-> "Organize the imported OpenClaw files using the Hermes migration baseline first. Use the official Hermes automatic migration destinations where they exist. For items without a direct destination, archive them under the official migration archive path and propose reviewed remaps separately. If a payload will not fit safely, do not auto-shorten it. Show a compression proposal and the reason first, then ask for confirmation."
+> "Use the approved pack only. First analyze the files and explain what OHL recommends for each important payload. Label each recommendation source: official automatic migration destination, OHL-recommended path instead of archive, OHL creator-recommended path, archive fallback, or hold / review item. Explain overflow and fit risk before applying anything. Confirm the md injection plan with the owner, then handle skills with body-level duplicate checking, then interpret config if the owner wants it."
 
 ## Source note
 

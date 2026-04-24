@@ -1,8 +1,15 @@
 # Budget Decision Rules
 
-Every importer must decide one of three states for every payload.
+Every importer must decide destination fit and size fit for every payload.
 
-## States
+## Destination states
+
+- `direct destination`
+- `absorb candidate`
+- `archive candidate`
+- `hold / review item`
+
+## Size states
 
 - `fits directly`
 - `needs compression`
@@ -11,13 +18,17 @@ Every importer must decide one of three states for every payload.
 ## Rule
 
 Silent truncation is not acceptable.
-If a payload does not clearly fit, the importer must either prepare a reviewed compression candidate or stop for explicit review.
+Silent destination guessing is also not acceptable.
+
+If a payload does not clearly fit by destination, the importer must classify it as absorb / archive / hold and explain why before asking approval.
+If a payload does not clearly fit by size, the importer must either prepare a reviewed compression candidate or stop for explicit review.
 
 ## Practical emphasis
 
 - `USER` and `MEMORY` are usually the tightest targets
 - `SOUL` and `AGENTS` are larger but still runtime-truncatable
 - archive leftovers must be kept visible rather than silently dropped
+- absorb candidates must be shown before editing durable destination files
 
 ## Skill-budget rule
 

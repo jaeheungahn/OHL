@@ -3,13 +3,27 @@
 Usage
 - Use this prompt on the **source OpenClaw instance**.
 - The goal is not a blind copy. The goal is to build a **safe, reviewable export pack** for Hermes.
-- This stage does not modify the source. It only reads, classifies, deduplicates, compresses, and reports.
+- This stage does not modify the source. It only reads, classifies, packages, and reports.
+- Exporter interaction should normally finish in 2 short steps, not a long interview.
 
 ---
 
 Prepare a safe, reviewable migration export from OpenClaw to Hermes.
 Do not perform a blind copy.
-Build a migration pack that is deduplicated, size-aware, secret-safe, and explicitly classified into carry / transform / archive / exclude buckets.
+Build a migration pack that is size-aware, secret-safe, and explicitly classified into carry / transform / archive / exclude buckets.
+
+Exporter interaction contract:
+- detect the current source platform automatically
+- ask Step 1 first:
+  - `1. md만`
+  - `2. md + skills`
+  - `3. md + skills + config`
+  - `4. 추가 요청사항`
+- ask Step 2 second:
+  - destination platform or destination path only
+- keep exporter-side owner questioning minimal
+- leave most detailed review questions inside the pack as importer notes or importer-facing prompt material
+- exporter should feel convenient to the owner, not like a long review checklist
 
 Key rules:
 - never carry secrets by default
@@ -35,18 +49,15 @@ Personality rule:
 - if a preset is created, include the preset artifact in the migration pack and leave the actual save/apply/reject decision to the importer stage
 
 Skill review rule:
-- before finalizing skill export candidates, inspect likely dependency and readiness metadata such as `platforms`, `prerequisites`, `required_environment_variables`, `required_credential_files`, and `related_skills`
-- report those findings for review instead of treating every skill as portable by default
-- exporter should ask only whether skill candidates/artifacts should be included in the migration pack for later importer review
-- if the owner declines, skip packing skill artifacts cleanly for the current pass
-- if the owner accepts, pack the reviewed skill candidates plus the relevant source metadata so the importer can decide later whether to actually import them
+- if Step 1 includes skills, inspect likely dependency and readiness metadata such as `platforms`, `prerequisites`, `required_environment_variables`, `required_credential_files`, and `related_skills`
+- do not turn that inspection into a long exporter-side interview
+- pack the findings as importer-facing review notes so the importer can decide later whether to actually import them
 
 Config recommendation rule:
-- exporter should ask only whether config review material should be included in the migration pack for later importer review
-- if the owner declines, skip packing config review material cleanly for the current pass
-- if the owner accepts, compare relevant OpenClaw and Hermes config options using official docs and pack the review material without applying any target config changes
+- if Step 1 includes config, compare relevant OpenClaw and Hermes config options using official docs and pack the review material without applying any target config changes
 - record the relevant config source metadata in the migration pack so the importer can recognize the original source file and section origin without re-asking
 - examples may include `command_allowlist`, `agent.personalities`, `skills.external_dirs`, `fallback_model`, and route-relevant messaging settings
+- detailed config review belongs primarily to the importer stage, not to a long exporter-side Q&A
 
 Messaging and env safety rule:
 - if the move may involve adding or reconnecting a bot to channels on the destination side, explain before token-related setup notes are packed that a duplicated shared `.env` or shared secret file should not be reused across bots casually

@@ -148,7 +148,28 @@ After export is done, prefer a short visible handoff:
 ```text
 Import this approved OpenClaw -> Hermes migration pack.
 
-Use official Hermes automatic migration destinations as the baseline mapping.
+Use the approved pack only.
+Do not re-read raw OpenClaw source files directly.
+
+First analyze the files in the pack and explain what was found.
+Then show OHL's recommended destination plan with recommendation source labels:
+- official automatic migration destination
+- OHL-recommended path instead of archive
+- OHL creator-recommended path
+- archive fallback
+- hold / review item
+
+Explain overflow, likely truncation, ambiguous destination fit, and overlap before applying anything.
+Then confirm or discuss the md injection plan with the owner before writing destination files.
+
+After md handling, ask whether to bring skills too.
+Inspect skill bodies and metadata for duplicate or near-duplicate destination skills.
+Report exact duplicate count and meaningful overlap count before import.
+
+After skills, ask whether the owner wants to bring or interpret config material.
+If yes, interpret analogous settings and risky settings before presenting any apply batch.
+
+Use official Hermes automatic migration destinations as the baseline mapping where they exist.
 Use official Hermes archive and reconstruction hints as the baseline fallback.
 
 Stop for review if there is:
@@ -159,8 +180,9 @@ Stop for review if there is:
 - skill dependency uncertainty
 - personality overlap between preset and durable files
 
-If a personality preset is included, do not assume it should become the long-term default automatically.
-Ask whether it should be:
+If a personality preset is included, do not ask immediately.
+First explain whether it is an official destination, OHL-recommended path, or OHL creator-recommended path.
+Then ask whether it should be:
 - saved only
 - applied immediately
 - rejected
@@ -168,9 +190,8 @@ Ask whether it should be:
 If removing duplicated tone/style text would change durable identity files,
 show the overlap first and ask before editing.
 
-After validation, propose Hermes config recommendations if they improve fit or safety.
-
-Only do that if the owner opted into config recommendation work.
+If config review material is included, show which config surfaces are involved before asking whether to use it now or later.
+Only use it now if the owner opted into config recommendation work.
 If approved, compare OpenClaw and Hermes options using official docs and show analogous settings before applying anything.
 If messaging or model/provider auth is involved, do not finish that secret setup for the owner.
 Show command examples or config snippets if useful, but say clearly that fresh credentials must be issued and entered manually by the owner.
